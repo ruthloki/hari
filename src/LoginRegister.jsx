@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 export const LoginRegister = ({ setUser }) => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -9,7 +10,8 @@ export const LoginRegister = ({ setUser }) => {
   const [registerPassword, setRegisterPassword] = useState("");
 
   return (
-    <>
+    <div className="login-register-container">
+      <h2>Login</h2>
       <label>
         Email:
         <input
@@ -39,10 +41,9 @@ export const LoginRegister = ({ setUser }) => {
             },
           })
             .then((response) => {
-              if (response.status != 200) {
+              if (response.status !== 200) {
                 throw new Error("Login Failed!");
               }
-
               return response.json().then((data) => setUser(data));
             })
             .catch((error) => {
@@ -54,6 +55,7 @@ export const LoginRegister = ({ setUser }) => {
         Login
       </button>
 
+      <h2>Register</h2>
       <label>
         Name:
         <input
@@ -92,8 +94,8 @@ export const LoginRegister = ({ setUser }) => {
             },
           })
             .then((response) => {
-              if (response.status != 200) {
-                throw new Error("register not valid");
+              if (response.status !== 200) {
+                throw new Error("Register not valid");
               }
 
               alert("Registration successful!");
@@ -110,6 +112,6 @@ export const LoginRegister = ({ setUser }) => {
       >
         Register
       </button>
-    </>
+    </div>
   );
 };
